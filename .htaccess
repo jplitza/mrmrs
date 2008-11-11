@@ -1,2 +1,11 @@
 SetEnv DEBUG 1
-php_flag error_reporting 20479
+<Files admin.php>
+  BrowserMatch "MSIE" AuthDigestEnableQueryStringHack=On 
+  AuthType Digest
+  AuthName "Admin Area"
+  AuthDigestDomain /~dead_orc/mrmrs/ /mrmrs/
+
+  AuthDigestProvider file
+  AuthUserFile /home/dead_orc/public_html/mrmrs/.htpasswd
+  Require valid-user
+</Files>
