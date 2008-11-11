@@ -1,0 +1,68 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 12pt;
+  font-family: Sans-Serif;
+}
+#login fieldset {
+  margin: 0 auto;
+  padding: 20px;
+  position: absolute;
+  margin-top: -27px;
+  margin-left: -140px;
+  padding-top: 29px;
+  top: 50%;
+  left: 50%;
+  height: 33px;
+  width: 260px;
+  text-align: center;
+}
+#login.false fieldset
+{
+  margin-top: -35px;
+  padding-top: 20px;
+  height: 50px;
+}
+#login fieldset legend {
+  margin: 0 25%;
+}
+form {
+  text-align: center;
+}
+#questions {
+  margin: 10px auto;
+  background-color: #EEF;
+  border-collapse: collapse;
+}
+#questions td, #questions th {
+  padding: 3px;
+  border: 1px #000 solid;
+}
+#questions .question {
+  text-align: right;
+  border-right: 0;
+}
+#questions .mister {
+  border-left: 0;
+  border-right: 0;
+}
+#questions .missis {
+  border-left: 0;
+}
+.message {
+  border: 1px #ABA solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -71px;
+  margin-left: -204px;
+  width: 252px;
+  height: 32px;
+  padding: 54px 14px;
+  padding-left: 140px;
+  background: url(btn_ok.png) 14px 14px no-repeat #EFE;
+  font-weight: bold;
+  text-align: center;
+}
