@@ -1,6 +1,6 @@
 {include file=header.tpl}
   <form action="{$smarty.server.PHP_SELF}" method="post" onsubmit="return check()">
-  <table id="questions">
+  <table class="btable">
     <tr>
       <th class="question">Titel</th>
       <th class="mister">Mister</th>

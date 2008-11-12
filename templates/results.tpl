@@ -1,13 +1,48 @@
-{include file=header.tpl}
-<div id="questions" style="width: 400px;">
+{if $export == 'csv'}
 {foreach from=$questions item=q key=qid name=questions}
-<h3>{$q.question}</h3>
-<ul>
-{foreach from=$q.answers item=a name=answers}
+"{$q.question|replace:'"':'""'}"
+{foreach from=$q.answers.m item=a name=answers}
+{assign var=aid value=$a.key}
+"{$persons.$aid|replace:'"':'""'}","{$a.count}"
+{/foreach}
+
+"{$q.question|replace:'"':'""'}"
+{foreach from=$q.answers.w item=a name=answers}
+{assign var=aid value=$a.key}
+"{$persons.$aid|replace:'"':'""'}","{$a.count}"
+{/foreach}
+
+{/foreach}
+{else}
+{include file=aheader.tpl}
+<table class="btable">
+  <tr>
+    <th class="question">Titel</th>
+    <th class="mister">Mister</th>
+    <th class="missis">Missis</th>
+  </tr>
+{foreach from=$questions item=q key=qid name=questions}
+  <tr>
+    <td class="question">{$q.question}</td>
+    <td class="mister">
+      <ul>
+{foreach from=$q.answers.m item=a name=answers}
 {assign var=aid value=$a.key}
 <li>{$persons.$aid} ({$a.count})</li>
 {/foreach}
-</ul>
+      </ul>
+    </td>
+    <td class="missis">
+      <ul>
+{foreach from=$q.answers.w item=a name=answers}
+{assign var=aid value=$a.key}
+<li>{$persons.$aid} ({$a.count})</li>
 {/foreach}
-</div>
-{include file=footer.tpl}
+      </ul>
+    </td>
+  </tr>
+{/foreach}
+</table>
+<a href="{$smarty.server.PHP_SELF}?page=results&amp;export=csv">CSV Export</a>
+{include file=afooter.tpl}
+{/if}

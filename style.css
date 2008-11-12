@@ -31,25 +31,30 @@ html, body {
 form {
   text-align: center;
 }
-#questions {
+.btable {
   margin: 10px auto;
   background-color: #EEF;
   border-collapse: collapse;
 }
-#questions td, #questions th {
+.btable td, .btable th {
   padding: 3px;
   border: 1px #000 solid;
 }
-#questions .question {
+table.btable .question {
   text-align: right;
   border-right: 0;
 }
-#questions .mister {
+table.btable .mister {
   border-left: 0;
   border-right: 0;
 }
-#questions .missis {
+table.btable .missis {
   border-left: 0;
+}
+table ul {
+  padding: 0;
+  padding-left: 20px;
+  margin: 0;
 }
 .message {
   border: 1px #ABA solid;
@@ -65,4 +70,27 @@ form {
   background: url(btn_ok.png) 14px 14px no-repeat #EFE;
   font-weight: bold;
   text-align: center;
+}
+
+/* ACP */
+h1 {
+  font-size: 150%;
+}
+#navigation h2 {
+  font-size: 100%;
+  display: inline;
+}
+#navigation h2:after {
+  content: ":";
+}
+
+#navigation ul {
+  display: inline;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#navigation ul li {
+  display: inline;
 }
