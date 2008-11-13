@@ -30,6 +30,8 @@
 {if $count lt 3 or $all}
 {assign var=aid value=$a.key}
 <li>{$persons.$aid} ({$a.count})</li>
+{elseif $count eq 4}
+<li>...</li>
 {/if}
 {/foreach}
       </ul>
@@ -40,6 +42,8 @@
 {if $count lt 3 or $all}
 {assign var=aid value=$a.key}
 <li>{$persons.$aid} ({$a.count})</li>
+{elseif $count eq 4}
+<li>...</li>
 {/if}
 {/foreach}
       </ul>
