@@ -75,6 +75,8 @@ table ul {
 /* ACP */
 h1 {
   font-size: 150%;
+  margin-top: 5px;
+  text-align: center;
 }
 #navigation h2 {
   font-size: 100%;
@@ -93,4 +95,8 @@ h1 {
 
 #navigation ul li {
   display: inline;
+}
+div.btable {
+  padding: 3px;
+  border: 1px #000 solid;
 }
