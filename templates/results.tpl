@@ -27,7 +27,7 @@
     <td class="mister">
       <ul>
 {foreach from=$q.answers.m item=a name=answers key=count}
-{if $count lt 3}
+{if $count lt 3 or $all}
 {assign var=aid value=$a.key}
 <li>{$persons.$aid} ({$a.count})</li>
 {/if}
@@ -37,7 +37,7 @@
     <td class="missis">
       <ul>
 {foreach from=$q.answers.w item=a name=answers key=count}
-{if $count lt 3}
+{if $count lt 3 or $all}
 {assign var=aid value=$a.key}
 <li>{$persons.$aid} ({$a.count})</li>
 {/if}
@@ -47,6 +47,6 @@
   </tr>
 {/foreach}
 </table>
-<a href="{$smarty.server.PHP_SELF}?page=results&amp;export=csv">CSV Export</a>
+<a href="{$smarty.server.PHP_SELF}?page=results&amp;display=all">Alle anzeigen</a> <a href="{$smarty.server.PHP_SELF}?page=results&amp;export=csv">CSV Export</a>
 {include file=afooter.tpl}
 {/if}

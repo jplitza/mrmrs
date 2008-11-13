@@ -17,4 +17,6 @@ if(!empty($_GET['export']) && $_GET['export'] == 'csv')
   header('Content-Type: text/csv; charset=UTF-8');
   $t->assign('export', $_GET['export']);
 }
+elseif(!empty($_GET['display']) && $_GET['display'] == 'all')
+  $t->assign('all', true);
 ?>
