@@ -26,17 +26,21 @@
     <td class="question">{$q.question}</td>
     <td class="mister">
       <ul>
-{foreach from=$q.answers.m item=a name=answers}
+{foreach from=$q.answers.m item=a name=answers key=count}
+{if $count lt 3}
 {assign var=aid value=$a.key}
 <li>{$persons.$aid} ({$a.count})</li>
+{/if}
 {/foreach}
       </ul>
     </td>
     <td class="missis">
       <ul>
-{foreach from=$q.answers.w item=a name=answers}
+{foreach from=$q.answers.w item=a name=answers key=count}
+{if $count lt 3}
 {assign var=aid value=$a.key}
 <li>{$persons.$aid} ({$a.count})</li>
+{/if}
 {/foreach}
       </ul>
     </td>
