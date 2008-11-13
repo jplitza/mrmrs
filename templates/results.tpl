@@ -51,6 +51,11 @@
   </tr>
 {/foreach}
 </table>
-<a href="{$smarty.server.PHP_SELF}?page=results&amp;display=all">Alle anzeigen</a> <a href="{$smarty.server.PHP_SELF}?page=results&amp;export=csv">CSV Export</a>
+{if $all}
+<a href="{$smarty.server.PHP_SELF}?page=results">Nicht alle anzeigen</a>
+{else}
+<a href="{$smarty.server.PHP_SELF}?page=results&amp;display=all">Alle anzeigen</a>
+{/if}
+<a href="{$smarty.server.PHP_SELF}?page=results&amp;export=csv">CSV Export</a>
 {include file=afooter.tpl}
 {/if}
