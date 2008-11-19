@@ -25,6 +25,8 @@ elseif(!empty($_GET['delete']))
   new MySQL("UPDATE `{$prefix}keys` SET `used` = NULL WHERE `key` = '%s' LIMIT 1", $_GET['delete']);
   new MySQL("COMMIT");
 }
+$counts = new MySQL("SELECT COUNT(*) FROM `{$prefix}keys` WHERE `used` IS NOT NULL");
 $sql = new MySQL("SELECT `key`, `used` FROM `{$prefix}keys`");
 $t->assign('keys', $sql->fetchRows());
+$t->assign('counts', array('total' => $sql->num, 'used' => $counts->fetchSingle()));
 ?>

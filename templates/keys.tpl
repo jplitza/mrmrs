@@ -1,4 +1,5 @@
 {include file=aheader.tpl}
+<div style="text-align: center;">Benutzt: {$counts.used} von {$counts.total}</div>
 <table class="btable">
   <tr>
     <th>Key</th>
