@@ -10,7 +10,6 @@ if(empty($_GET['page']))
   $t->display('admin_overview.tpl');
 elseif(is_file('templates/'.basename($_GET['page']).'.tpl') && is_file('acp_pages/'.basename($_GET['page']).'.php'))
 {
-  echo 'foo';
   require('acp_pages/'.basename($_GET['page']).'.php');
   $t->display(basename($_GET['page']).'.tpl');
 }
