@@ -16,20 +16,28 @@ if(!empty($_POST['key']))
   }
   else
   {
-    $sql = new MySQL("SELECT `id`, `gender`, `name` FROM `{$prefix}persons` ORDER BY `name`");
+    $sql = new MySQL("SELECT `id`, `category`, `gender`, `name` FROM `{$prefix}persons` ORDER BY `name`");
     $persons = array();
     while($row = $sql->fetchRow())
-      $persons[$row['gender']][$row['id']] = $row['name'];
+      $persons[$row['category']][$row['gender']][$row['id']] = $row['name'];
     if(empty($_POST['votes']))
     {
       // show choices
-      $questions = new MySQL("SELECT `id`, `question` FROM `{$prefix}questions`");
-      $t->assign('questions', $questions->fetchRows());
+      $sql = new MySQL("SELECT `id`, `category`, `question` FROM `{$prefix}questions`");
+      $questions = array();
+      while($row = $sql->fetchRow())
+        $questions[$row['category']][$row['id']] = $row;
+      $t->assign('questions', $questions);
       $t->assign('persons', $persons);
       $t->display('list.tpl');
     }
     else
     {
+      $sql = new MySQL("SELECT `id`, `category`, `question` FROM `{$prefix}questions`");
+      $questions = array();
+      while($row = $sql->fetchRow())
+        $questions[$row['id']] = $row;
+
       // make choices
       $votes = array();
       $query = "INSERT INTO `{$prefix}answers` (`qid`, `gender`, `answer`, `key`) VALUES ";
@@ -38,13 +46,13 @@ if(!empty($_POST['key']))
         {
           if(!empty($val['m']) && (ctype_digit($val['m']) || is_int($val['m'])))
           {
-            if(!in_array($val['m'], array_keys($persons['m'])))
+            if(!in_array($val['m'], array_keys($persons[$questions[$key]['category']]['m'])))
               die('Manipulationsversuch!');
             $votes[] = "('$key', 'm', '".$val['m']."', '".$_POST['key']."')";
           }
           if(!empty($val['w']))
           {
-            if(!in_array($val['w'], array_keys($persons['w'])))
+            if(!in_array($val['w'], array_keys($persons[$questions[$key]['category']]['w'])))
               die('Manipulationsversuch!');
             $votes[] = "('$key', 'w', '".$val['w']."', '".$_POST['key']."')";
           }
