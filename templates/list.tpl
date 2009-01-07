@@ -48,6 +48,18 @@
     </tr>
 {/section}
   </table>
+  <table class="btable">
+    <tr>
+      <th class="question">Statistiken</th>
+      <th class="missis">Antwort</th>
+    </tr>
+{section name='q' loop=$questions.2}
+    <tr>
+      <td class="question">{$questions.2[q].question}</td>
+      <td class="missis"><input type="text" name="votes[{$questions.2[q].id}][s]" /></td>
+    </tr>
+{/section}
+  </table>
   <input type="hidden" name="key" value="{$smarty.post.key}" />
   <input type="submit" value="Absenden" />
   <input type="reset" value="Formular leeren" />

@@ -26,7 +26,7 @@ if(!empty($_POST['key']))
       $sql = new MySQL("SELECT `id`, `category`, `question` FROM `{$prefix}questions`");
       $questions = array();
       while($row = $sql->fetchRow())
-        $questions[$row['category']][$row['id']] = $row;
+        $questions[$row['category']][] = $row;
       $t->assign('questions', $questions);
       $t->assign('persons', $persons);
       $t->display('list.tpl');
@@ -44,17 +44,32 @@ if(!empty($_POST['key']))
       foreach($_POST['votes'] as $key => $val)
         if(ctype_digit($key) || is_int($key))
         {
-          if(!empty($val['m']) && (ctype_digit($val['m']) || is_int($val['m'])))
+          if(!empty($val['s']))
           {
-            if(!in_array($val['m'], array_keys($persons[$questions[$key]['category']]['m'])))
-              die('Manipulationsversuch!');
-            $votes[] = "('$key', 'm', '".$val['m']."', '".$_POST['key']."')";
+            $tmpsql = new MySQL("SELECT `id` FROM `{$prefix}persons` WHERE `category` = 2 AND `name` = '%s'", $val['s']);
+            if($tmpsql->num == 0)
+            {
+              $tmpsql = new MySQL("INSERT INTO `{$prefix}persons` (`category`, `gender`, `name`) VALUES (2, NULL, '%s')", $val['s']);
+              $nid = $tmpsql->iid;
+            }
+            else
+              $nid = $tmpsql->fetchSingle();
+            $votes[] = "('$key', NULL, $nid, '".$_POST['key']."')";
           }
-          if(!empty($val['w']))
+          else
           {
-            if(!in_array($val['w'], array_keys($persons[$questions[$key]['category']]['w'])))
-              die('Manipulationsversuch!');
-            $votes[] = "('$key', 'w', '".$val['w']."', '".$_POST['key']."')";
+            if(!empty($val['m']) && (ctype_digit($val['m']) || is_int($val['m'])))
+            {
+              if(!in_array($val['m'], array_keys($persons[$questions[$key]['category']]['m'])))
+                die('Manipulationsversuch!');
+              $votes[] = "('$key', 'm', '".$val['m']."', '".$_POST['key']."')";
+            }
+            if(!empty($val['w']) && ctype_digit($val['w']) || is_int($val['w']))
+            {
+              if(!in_array($val['w'], array_keys($persons[$questions[$key]['category']]['w'])))
+                die('Manipulationsversuch!');
+              $votes[] = "('$key', 'w', '".$val['w']."', '".$_POST['key']."')";
+            }
           }
         }
       new MySQL("BEGIN");

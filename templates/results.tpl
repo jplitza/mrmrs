@@ -17,11 +17,11 @@
 {include file=aheader.tpl}
 <table class="btable">
   <tr>
-    <th class="question">Titel</th>
+    <th class="question">Titel (Schüler)</th>
     <th class="mister">Mister</th>
     <th class="missis">Missis</th>
   </tr>
-{foreach from=$questions item=q key=qid name=questions}
+{foreach from=$questions.0 item=q key=qid name=questions}
   <tr>
     <td class="question">{$q.question}</td>
     <td class="mister">
@@ -39,6 +39,65 @@
     <td class="missis">
       <ul>
 {foreach from=$q.answers.w item=a name=answers key=count}
+{if $count lt 3 or $all}
+{assign var=aid value=$a.key}
+<li>{$persons.$aid} ({$a.count})</li>
+{elseif $count eq 4}
+<li>...</li>
+{/if}
+{/foreach}
+      </ul>
+    </td>
+  </tr>
+{/foreach}
+</table>
+<table class="btable">
+  <tr>
+    <th class="question">Titel (Lehrer)</th>
+    <th class="mister">Mister</th>
+    <th class="missis">Missis</th>
+  </tr>
+{foreach from=$questions.1 item=q key=qid name=questions}
+  <tr>
+    <td class="question">{$q.question}</td>
+    <td class="mister">
+      <ul>
+{foreach from=$q.answers.m item=a name=answers key=count}
+{if $count lt 3 or $all}
+{assign var=aid value=$a.key}
+<li>{$persons.$aid} ({$a.count})</li>
+{elseif $count eq 4}
+<li>...</li>
+{/if}
+{/foreach}
+      </ul>
+    </td>
+    <td class="missis">
+      <ul>
+{foreach from=$q.answers.w item=a name=answers key=count}
+{if $count lt 3 or $all}
+{assign var=aid value=$a.key}
+<li>{$persons.$aid} ({$a.count})</li>
+{elseif $count eq 4}
+<li>...</li>
+{/if}
+{/foreach}
+      </ul>
+    </td>
+  </tr>
+{/foreach}
+</table>
+<table class="btable">
+  <tr>
+    <th class="question">Statistik</th>
+    <th class="missis">Werte</th>
+  </tr>
+{foreach from=$questions.2 item=q key=qid name=questions}
+  <tr>
+    <td class="question">{$q.question}</td>
+    <td class="missis">
+      <ul>
+{foreach from=$q.answers item=a name=answers key=count}
 {if $count lt 3 or $all}
 {assign var=aid value=$a.key}
 <li>{$persons.$aid} ({$a.count})</li>
