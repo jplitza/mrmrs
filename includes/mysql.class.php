@@ -93,19 +93,17 @@ class MySQL extends MySQLAccess
     if(mysql_errno(self::$connection) != 0)
       $this->error();
 
-    if(!is_bool($this->result))
-    {
-      if($this->type == 'SELECT')
+    if(!is_bool($this->result) && $this->type == 'SELECT')
         $this->num = mysql_num_rows($this->result);
-      elseif($this->type == 'INSERT' || $this->type == 'UPDATE' || $this->type == 'DELETE')
-      {
-        $this->num = mysql_affected_rows(self::$connection);
-        if($this->type == 'INSERT')
-          $this->iid = mysql_insert_id(self::$connection);
-      }
-      else
-        $this->num = 0;
+    elseif($this->result && ($this->type == 'INSERT' || $this->type == 'UPDATE' || $this->type == 'DELETE'))
+    {
+      $this->num = mysql_affected_rows(self::$connection);
+
+      if($this->type == 'INSERT')
+        $this->iid = mysql_insert_id(self::$connection);
     }
+    else
+      $this->num = 0;
 
     if(DEBUG == 2 && $this->type == 'SELECT')
       $this->test_keys();
