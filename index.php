@@ -64,7 +64,7 @@ if(!empty($_POST['key']))
                 die('Manipulationsversuch!');
               $votes[] = "('$key', 'm', '".$val['m']."', '".$_POST['key']."')";
             }
-            if(!empty($val['w']) && ctype_digit($val['w']) || is_int($val['w']))
+            if(!empty($val['w']) && (ctype_digit($val['w']) || is_int($val['w'])))
             {
               if(!in_array($val['w'], array_keys($persons[$questions[$key]['category']]['w'])))
                 die('Manipulationsversuch!');
