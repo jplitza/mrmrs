@@ -6,5 +6,6 @@
     <ul>
       <li><a href="{$smarty.server.PHP_SELF}?page=keys">Keys</a></li>
       <li><a href="{$smarty.server.PHP_SELF}?page=results">Auswertung</a></li>
+      <li><a href="{$smarty.server.PHP_SELF}?page=reset">Reset</a></li>
     </ul>
   </div>
