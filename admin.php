@@ -4,6 +4,7 @@ require_once('includes/mysql.class.php');
 date_default_timezone_set('Europe/Berlin');
 mb_internal_encoding('UTF-8');
 $t = new Smarty;
+$t->assign('acp', true);
 $prefix = 'mrmrs_';
 
 if(empty($_GET['page']))
