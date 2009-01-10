@@ -1,3 +1,4 @@
+{assign var='redirect' value='true'}
 {include file=header.tpl}
   <div class="message">
     Erfolgreich abgestimmt!<br />

@@ -3,6 +3,9 @@
 <head>
   <title>Mr. &amp; Mrs. Wahlen{if $acp} - Admin Panel{/if}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{if $redirect}
+  <meta http-equiv="refresh" content="10;url=index.php" />
+{/if}
   <link rel="stylesheet" href="style.css" type="text/css" />
 {literal}
   <!--[if IE]>
