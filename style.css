@@ -35,6 +35,7 @@ form {
   margin: 10px auto;
   background-color: #EEF;
   border-collapse: collapse;
+  width: 700px;
 }
 .btable td, .btable th {
   padding: 3px;

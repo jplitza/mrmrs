@@ -1,5 +1,5 @@
 {include file=header.tpl}
-<div class="btable" style="width: 600px;">
+<div class="btable" style="padding: 10px;">
   <h1>Admin Panel</h1>
   <div id="navigation">
     <h2>Navigation</h2>
