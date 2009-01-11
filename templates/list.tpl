@@ -60,6 +60,17 @@
     </tr>
 {/section}
   </table>
+  <table class="btable">
+    <tr>
+      <th class="mister" style="border: 1px solid #000;">Fakten</th>
+    </tr>
+{section name='q' loop=$questions.3}
+    <tr>
+      <td class="mister" style="border: 1px solid #000;"><label><input type="checkbox" name="votes[{$questions.3[q].id}][b]" value="{$yesid}" /> {$questions.3[q].question}</label></td>
+    </tr>
+{/section}
+  </table>
+  <div class="btable">Ein <b>Hinweis</b> zu guter Letzt: Wir garantieren nicht, dass alle dieser Titel es auch in die Abizeitung schaffen. Wir garantieren nur, dass jede Wahl absolut anonym bleibt.</div>
   <input type="hidden" name="key" value="{$smarty.post.key}" />
   <input type="submit" value="Absenden" />
   <input type="reset" value="Formular leeren" />

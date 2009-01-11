@@ -27,8 +27,10 @@ if(!empty($_POST['key']))
       $questions = array();
       while($row = $sql->fetchRow())
         $questions[$row['category']][] = $row;
+      $yesid = new MySQL("SELECT `id` FROM `{$prefix}persons` WHERE `category` IS NULL AND `name` = 'yes'");
       $t->assign('questions', $questions);
       $t->assign('persons', $persons);
+      $t->assign('yesid', $yesid->fetchSingle());
       $t->display('list.tpl');
     }
     else
@@ -44,7 +46,11 @@ if(!empty($_POST['key']))
       foreach($_POST['votes'] as $key => $val)
         if(ctype_digit($key) || is_int($key))
         {
-          if(!empty($val['s']))
+          if(!empty($val['b']))
+          {
+            $votes[] = "('$key', NULL, 1, '".$_POST['key']."')";
+          }
+          elseif(!empty($val['s']))
           {
             $tmpsql = new MySQL("SELECT `id` FROM `{$prefix}persons` WHERE `category` = 2 AND `name` = '%s'", $val['s']);
             if($tmpsql->num == 0)

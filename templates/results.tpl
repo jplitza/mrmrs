@@ -110,6 +110,23 @@
   </tr>
 {/foreach}
 </table>
+<table class="btable">
+  <tr>
+    <th class="question">Fakten</th>
+    <th class="missis">Werte</th>
+  </tr>
+{foreach from=$questions.3 item=q key=qid name=questions}
+  <tr>
+    <td class="question">{$q.question}</td>
+    <td class="missis">
+      <ul>
+<li>ja ({$q.answers.0.count})</li>
+<li>nein ({math equation="84-x" x=$q.answers.0.count})</li>
+      </ul>
+    </td>
+  </tr>
+{/foreach}
+</table>
 {if $all}
 <a href="{$smarty.server.PHP_SELF}?page=results">Nicht alle anzeigen</a>
 {else}

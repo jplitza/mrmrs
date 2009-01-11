@@ -2,6 +2,7 @@
 require_once('includes/smarty/Smarty.class.php');
 require_once('includes/mysql.class.php');
 date_default_timezone_set('Europe/Berlin');
+error_reporting(E_ALL);
 mb_internal_encoding('UTF-8');
 $t = new Smarty;
 $t->assign('acp', true);
