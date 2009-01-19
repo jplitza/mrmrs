@@ -20,11 +20,11 @@ if(!empty($_POST['key']))
     $persons = array();
     while($row = $sql->fetchRow())
       $persons[$row['category']][$row['gender']][$row['id']] = $row['name'];
+    $sql = new MySQL("SELECT `id`, `category`, `question` FROM `{$prefix}questions` ORDER BY `category`, `question`");
+    $questions = array();
     if(empty($_POST['votes']))
     {
       // show choices
-      $sql = new MySQL("SELECT `id`, `category`, `question` FROM `{$prefix}questions`");
-      $questions = array();
       while($row = $sql->fetchRow())
         $questions[$row['category']][] = $row;
       $yesid = new MySQL("SELECT `id` FROM `{$prefix}persons` WHERE `category` IS NULL AND `name` = 'yes'");
@@ -35,8 +35,6 @@ if(!empty($_POST['key']))
     }
     else
     {
-      $sql = new MySQL("SELECT `id`, `category`, `question` FROM `{$prefix}questions`");
-      $questions = array();
       while($row = $sql->fetchRow())
         $questions[$row['id']] = $row;
 
