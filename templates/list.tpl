@@ -1,9 +1,9 @@
 {include file=header.tpl}
+  <form action="{$smarty.server.PHP_SELF}" method="post" onsubmit="return check()">
   <div class="btable">
     <b>Willkommen bei der Mr. &amp; Mrs. Wahl 2009.</b><br />
     Wir wissen, dass das ne ganze Menge Titel sind und sich vielleicht in den Augen einiger einige Titel ähneln. Wir planen nicht, alle Titel in die Zeitung zu bringen, sondern werden nichtssagende Ergebnisse rausschmeißen und ähnliche Ergebnisse bei ähnlichen Titeln zusammenfassen. Wenn euch zu einem Titel einfach keiner/keine einfällt, könnt ihr das Feld auch leer lassen - bitte wählt nicht einfach irgendwen!<br />
     Bevor es los geht sei euch noch gesagt, dass <i>niemand</i>, auch das Gremium nicht, nachvollziehen kann, wer was gewählt hat.</div>
-  <form action="{$smarty.server.PHP_SELF}" method="post" onsubmit="return check()">
   <table class="btable">
     <tr>
       <th class="question">Titel (Schüler)</th>
