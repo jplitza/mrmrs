@@ -17,9 +17,11 @@ $persons_sql = new MySQL("SELECT `id`, `name` FROM `{$prefix}persons`");
 $persons = array();
 while($row = $persons_sql->fetchRow())
   $persons[$row['id']] = $row['name'];
+$votes_sql = new MySQL("SELECT COUNT(*) FROM `{$prefix}keys` WHERE `used` IS NOT NULL");
 
 $t->assign('questions', $questions);
 $t->assign('persons', $persons);
+$t->assign('votes', $votes_sql->fetchSingle());
 
 if(!empty($_GET['export']) && $_GET['export'] == 'csv')
 {

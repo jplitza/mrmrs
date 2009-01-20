@@ -121,7 +121,7 @@
     <td class="missis">
       <ul>
 <li>ja ({$q.answers.0.count})</li>
-<li>nein ({math equation="84-x" x=$q.answers.0.count})</li>
+<li>nein ({math equation="y-x" x=$q.answers.0.count y=$votes})</li>
       </ul>
     </td>
   </tr>
