@@ -13,6 +13,11 @@ while($row = $answers_sql->fetchRow())
     $questions[$row['category']][$row['qid']]['answers'][] = array('count' => $row['count'], 'key' => $row['answer']);
 }
 
+$counts_sql = new MySQL("SELECT `gender`, `qid`, COUNT(*) AS 'count' FROM `{$prefix}answers` GROUP BY `qid`, `gender`");
+$counts = array();
+while($row = $counts_sql->fetchRow())
+  $counts[$row['qid']][$row['gender']] = $row['count'];
+
 $persons_sql = new MySQL("SELECT `id`, `name` FROM `{$prefix}persons`");
 $persons = array();
 while($row = $persons_sql->fetchRow())
@@ -22,6 +27,7 @@ $votes_sql = new MySQL("SELECT COUNT(*) FROM `{$prefix}keys` WHERE `used` IS NOT
 $t->assign('questions', $questions);
 $t->assign('persons', $persons);
 $t->assign('votes', $votes_sql->fetchSingle());
+$t->assign('counts', $counts);
 
 if(!empty($_GET['export']) && $_GET['export'] == 'csv')
 {

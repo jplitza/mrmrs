@@ -34,6 +34,7 @@
 <li>...</li>
 {/if}
 {/foreach}
+<li style="list-style-type: none; font-style: italic;">Gesamt: {$counts.$qid.m}</li>
       </ul>
     </td>
     <td class="missis">
@@ -46,6 +47,7 @@
 <li>...</li>
 {/if}
 {/foreach}
+<li style="list-style-type: none; font-style: italic;">Gesamt: {$counts.$qid.w}</li>
       </ul>
     </td>
   </tr>
@@ -70,6 +72,7 @@
 <li>...</li>
 {/if}
 {/foreach}
+<li style="list-style-type: none; font-style: italic;">Gesamt: {$counts.$qid.m}</li>
       </ul>
     </td>
     <td class="missis">
@@ -82,6 +85,7 @@
 <li>...</li>
 {/if}
 {/foreach}
+<li style="list-style-type: none; font-style: italic;">Gesamt: {$counts.$qid.w}</li>
       </ul>
     </td>
   </tr>
