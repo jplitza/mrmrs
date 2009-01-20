@@ -40,13 +40,14 @@ if(!empty($_POST['key']))
 
       // make choices
       $votes = array();
+      $yesid = new MySQL("SELECT `id` FROM `{$prefix}persons` WHERE `category` IS NULL AND `name` = 'yes'");
       $query = "INSERT INTO `{$prefix}answers` (`qid`, `gender`, `answer`, `key`) VALUES ";
       foreach($_POST['votes'] as $key => $val)
         if(ctype_digit($key) || is_int($key))
         {
           if(!empty($val['b']))
           {
-            $votes[] = "('$key', NULL, 1, '".$_POST['key']."')";
+            $votes[] = "('$key', NULL, 1, '".$yesid->fetchSingle()."')";
           }
           elseif(!empty($val['s']))
           {
