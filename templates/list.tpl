@@ -76,6 +76,5 @@
   </table>
   <input type="hidden" name="key" value="{$smarty.post.key}" />
   <input type="submit" value="Absenden" />
-  <input type="reset" value="Formular leeren" />
   </form>
 {include file=footer.tpl}
