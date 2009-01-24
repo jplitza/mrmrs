@@ -4,11 +4,21 @@ $questions = array();
 while($row = $questions_sql->fetchRow())
   $questions[$row['category']][$row['id']] = array('question' => $row['question']);
 
-$answers_sql = new MySQL("SELECT `qid`, `answer`, `gender`, COUNT(*) AS 'count', q.`category` FROM `{$prefix}answers` LEFT JOIN `{$prefix}questions` AS q ON `qid` = q.`id` GROUP BY `qid`, `gender`, `answer` ORDER BY `count` DESC");
+$answers_sql = new MySQL("SELECT `qid`, `answer`, `gender`, COUNT(*) AS 'count', q.`category` FROM `{$prefix}answers` LEFT JOIN `{$prefix}questions` AS q ON `qid` = q.`id` GROUP BY `qid`, `gender`, `answer` ORDER BY q.`question` ASC, `gender` ASC, `count` DESC");
+$old = array('count' => 0, 'qid' => 0, 'gender' => 0);
 while($row = $answers_sql->fetchRow())
 {
   if(!empty($row['gender']))
-    $questions[$row['category']][$row['qid']]['answers'][$row['gender']][] = array('count' => $row['count'], 'key' => $row['answer']);
+  {
+    if($row['qid'] != $old['qid'] || $row['gender'] != $old['gender'])
+      $i = 1;
+    elseif($row['count'] < $old['count'])
+      $i++;
+    $old = $row;
+    if(!isset($questions[$row['category']][$row['qid']]['answers'][$row['gender']][$i]))
+      $questions[$row['category']][$row['qid']]['answers'][$row['gender']][$i] = array();
+    $questions[$row['category']][$row['qid']]['answers'][$row['gender']][$i][] = array('count' => $row['count'], 'key' => $row['answer']);
+  }
   else
     $questions[$row['category']][$row['qid']]['answers'][] = array('count' => $row['count'], 'key' => $row['answer']);
 }

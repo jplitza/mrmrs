@@ -26,11 +26,13 @@
     <td class="question">{$q.question}</td>
     <td class="mister">
       <ul>
-{foreach from=$q.answers.m item=a name=answers key=count}
-{if $count lt 3 or $all}
+{foreach from=$q.answers.m item=ag name=agroups key=place}
+{if $place le 3 or $all}
+{foreach from=$ag item=a name=answers key=count}
 {assign var=aid value=$a.key}
-<li>{$persons.$aid} ({$a.count})</li>
-{elseif $count eq 4}
+<li>{$place}. {$persons.$aid} ({$a.count})</li>
+{/foreach}
+{elseif $place eq 4}
 <li>...</li>
 {/if}
 {/foreach}
@@ -39,11 +41,13 @@
     </td>
     <td class="missis">
       <ul>
-{foreach from=$q.answers.w item=a name=answers key=count}
-{if $count lt 3 or $all}
+{foreach from=$q.answers.w item=ag name=agroups key=place}
+{if $place le 3 or $all}
+{foreach from=$ag item=a name=answers key=count}
 {assign var=aid value=$a.key}
-<li>{$persons.$aid} ({$a.count})</li>
-{elseif $count eq 4}
+<li>{$place}. {$persons.$aid} ({$a.count})</li>
+{/foreach}
+{elseif $place eq 4}
 <li>...</li>
 {/if}
 {/foreach}
@@ -64,11 +68,13 @@
     <td class="question">{$q.question}</td>
     <td class="mister">
       <ul>
-{foreach from=$q.answers.m item=a name=answers key=count}
-{if $count lt 3 or $all}
+{foreach from=$q.answers.m item=ag name=agroups key=place}
+{if $place le 3 or $all}
+{foreach from=$ag item=a name=answers key=count}
 {assign var=aid value=$a.key}
-<li>{$persons.$aid} ({$a.count})</li>
-{elseif $count eq 4}
+<li>{$place}. {$persons.$aid} ({$a.count})</li>
+{/foreach}
+{elseif $place eq 4}
 <li>...</li>
 {/if}
 {/foreach}
@@ -77,11 +83,13 @@
     </td>
     <td class="missis">
       <ul>
-{foreach from=$q.answers.w item=a name=answers key=count}
-{if $count lt 3 or $all}
+{foreach from=$q.answers.w item=ag name=agroups key=place}
+{if $place le 3 or $all}
+{foreach from=$ag item=a name=answers key=count}
 {assign var=aid value=$a.key}
-<li>{$persons.$aid} ({$a.count})</li>
-{elseif $count eq 4}
+<li>{$place}. {$persons.$aid} ({$a.count})</li>
+{/foreach}
+{elseif $place eq 4}
 <li>...</li>
 {/if}
 {/foreach}
